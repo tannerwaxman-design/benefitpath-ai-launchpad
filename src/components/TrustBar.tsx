@@ -1,7 +1,6 @@
 const stats = [
-  { number: "10,000+", label: "Calls Made" },
-  { number: "87%", label: "Voicemail Delivery Rate" },
-  { number: "3x", label: "More Appointments" },
+  { number: "82", label: "Appointments Booked" },
+  { number: "3,238", label: "Calls Made" },
   { number: "100%", label: "TCPA Compliant" },
   { number: "48hrs", label: "Setup Time" },
 ];
