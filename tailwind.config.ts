@@ -13,7 +13,15 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["Inter", "system-ui", "sans-serif"],
+      },
       colors: {
+        navy: "#0f172a",
+        teal: { DEFAULT: "#0d9488", light: "#14b8a6" },
+        "green-accent": "#22c55e",
+        "cta-blue": "#4F6EF7",
+        "section-gray": "#f8f9fa",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
