@@ -90,7 +90,7 @@
       background: linear-gradient(135deg, #0F1629 0%, #1a1f3a 50%, #0d9488 85%, #16a34a 100%);
       min-height: 100vh;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       padding-top: 80px;
     }
     .hero-grid {
@@ -116,8 +116,8 @@
       line-height: 1.1;
       color: #fff;
       margin-bottom: 24px;
-      height: 2.4em; /* fixed — never grows or shrinks */
-      overflow: visible;
+      min-height: 2.5em; /* pre-reserves space for 2 full lines — layout never shrinks below this */
+      overflow: hidden;
     }
     #typewriter-word, .cursor {
       white-space: nowrap; /* prevent typewriter line from wrapping */
