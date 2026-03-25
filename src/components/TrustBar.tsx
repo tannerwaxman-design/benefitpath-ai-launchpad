@@ -1,6 +1,5 @@
 const stats = [
-  { number: "82", label: "Appointments Booked" },
-  { number: "3,238", label: "Calls Made" },
+  { number: "2.5%", label: "Appointment Booking Rate" },
   { number: "100%", label: "TCPA Compliant" },
   { number: "48hrs", label: "Setup Time" },
 ];
@@ -11,7 +10,7 @@ const TrustBar = () => (
       <h2 className="text-2xl sm:text-3xl font-bold text-navy mb-16">
         Trusted by Medicare Agents Across the Country
       </h2>
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8">
+      <div className="grid grid-cols-3 gap-8">
         {stats.map((stat) => (
           <div key={stat.label}>
             <p className="text-3xl sm:text-4xl font-extrabold text-cta-blue">{stat.number}</p>
