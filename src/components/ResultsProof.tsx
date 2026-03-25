@@ -1,7 +1,7 @@
 const stats = [
-  { number: "82", label: "Appointments Booked" },
-  { number: "3,238", label: "Calls Made" },
-  { number: "2.5%", label: "Booking Rate" },
+  { number: "2.5%", label: "Appointment Booking Rate" },
+  { number: "100%", label: "TCPA Compliant" },
+  { number: "48hrs", label: "Average Setup Time" },
 ];
 
 const ResultsProof = () => (
