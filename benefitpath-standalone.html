@@ -116,7 +116,11 @@
       line-height: 1.1;
       color: #fff;
       margin-bottom: 24px;
-      min-height: 2.3em; /* reserves 2 lines so layout never shifts */
+      height: 2.4em; /* fixed — never grows or shrinks */
+      overflow: visible;
+    }
+    #typewriter-word, .cursor {
+      white-space: nowrap; /* prevent typewriter line from wrapping */
     }
     .hero-sub { font-size: 1.125rem; color: rgba(255,255,255,0.6); margin-bottom: 40px; }
 
