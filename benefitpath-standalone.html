@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BenefitPath Voice AI — Done-For-You AI Calling for Medicare Agents</title>
+  <meta name="description" content="BenefitPath Voice AI sets up your entire AI calling system so it starts calling your Medicare leads, leaving compliant voicemails, and booking appointments automatically." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0f172a;
+      --primary: #5271ff;
+      --primary-dark: #3a5aff;
+      --green-accent: #22c55e;
+      --cta-blue: #5271ff;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --bg: #ffffff;
+      --section-gray: #f8f9fa;
+      --destructive: #ef4444;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--navy);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Buttons ── */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.9375rem;
+      padding: 12px 32px;
+      border-radius: 10px;
+      transition: background 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-primary-lg { padding: 14px 36px; font-size: 1rem; }
+    .btn-sm { padding: 10px 24px; font-size: 0.875rem; }
+
+    /* ── Navbar ── */
+    .main-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 50;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .nav-logo svg { width: 28px; height: auto; flex-shrink: 0; }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, #0F1629 0%, #1a1f3a 50%, #0d9488 85%, #16a34a 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+    }
+    .hero-grid {
+      display: grid;
+      gap: 64px;
+      align-items: start;
+      padding: 96px 0;
+    }
+    @media (min-width: 1024px) {
+      .hero-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 3.75rem);
+      font-weight: 900;
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 24px;
+      min-height: 2.3em; /* reserves 2 lines so layout never shifts */
+    }
+    .hero-sub { font-size: 1.125rem; color: rgba(255,255,255,0.6); margin-bottom: 40px; }
+
+    #typewriter-word { color: var(--green-accent); }
+    .cursor {
+      display: inline-block;
+      width: 3px;
+      height: 0.85em;
+      background: var(--green-accent);
+      margin-left: 3px;
+      vertical-align: middle;
+      animation: blink 1s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    /* iPhone mockup */
+    .phone-mockup {
+      width: 320px;
+      border-radius: 40px;
+      background: #fff;
+      border: 1px solid var(--border);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+    .phone-notch {
+      background: #fff;
+      padding: 12px 24px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .phone-notch-pill { width: 96px; height: 20px; background: #0f172a; border-radius: 999px; margin: 0 auto; }
+    .phone-notch-time { font-size: 11px; color: var(--muted); font-weight: 500; }
+    .phone-notch-bat { width: 24px; height: 12px; background: var(--green-accent); border-radius: 3px; }
+    .phone-header { background: var(--primary); padding: 16px 20px; }
+    .phone-header p { color: #fff; font-size: 0.875rem; font-weight: 600; }
+    .phone-header span { color: rgba(255,255,255,0.8); font-size: 0.75rem; }
+    .phone-active { padding: 20px; text-align: center; background: #fff; }
+    .ai-badge { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 4px; }
+    .ai-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green-accent); }
+    .ai-label { color: var(--green-accent); font-size: 0.875rem; font-weight: 600; }
+    .phone-calling { color: var(--muted); font-size: 0.875rem; }
+    .waveform { display: flex; align-items: center; justify-content: center; gap: 3px; height: 32px; margin-top: 12px; }
+    .waveform-bar { width: 4px; background: var(--primary); border-radius: 2px; height: 8px; }
+    @keyframes waveform { 0%,100%{height:8px} 50%{height:24px} }
+    .waveform-bar { animation: waveform 0.8s ease-in-out infinite; }
+    .waveform-bar:nth-child(2){animation-delay:.1s}
+    .waveform-bar:nth-child(3){animation-delay:.2s}
+    .waveform-bar:nth-child(4){animation-delay:.3s}
+    .waveform-bar:nth-child(5){animation-delay:.15s}
+    .waveform-bar:nth-child(6){animation-delay:.25s}
+    .waveform-bar:nth-child(7){animation-delay:.05s}
+    .waveform-bar:nth-child(8){animation-delay:.35s}
+    .phone-divider { border-top: 1px solid var(--border); margin: 0 20px; }
+    .phone-calls { padding: 16px 20px; }
+    .phone-calls-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-weight: 600; margin-bottom: 12px; }
+    .phone-call-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .phone-call-name { font-size: 0.875rem; font-weight: 500; color: var(--navy); }
+    .phone-call-meta { display: flex; align-items: center; gap: 10px; }
+    .status-dot { width: 6px; height: 6px; border-radius: 50%; }
+    .status-connected { background: var(--green-accent); }
+    .status-voicemail { background: #facc15; }
+    .status-noanswer { background: var(--muted); }
+    .status-text { font-size: 12px; color: var(--muted); }
+    .call-time { font-size: 12px; color: var(--muted); }
+
+    /* ── Trust Bar ── */
+    .trust-bar {
+      background: var(--bg);
+      padding: 96px 0;
+      text-align: center;
+    }
+    .trust-bar h2 { font-size: clamp(1.3rem, 2.5vw, 1.875rem); font-weight: 700; color: var(--navy); margin-bottom: 64px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .stat-number { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 900; color: var(--cta-blue); }
+    .stat-label { font-size: 0.875rem; color: var(--muted); margin-top: 8px; font-weight: 500; }
+
+    /* ── Section shared ── */
+    section { padding: 96px 0; }
+    .section-gray { background: var(--section-gray); }
+    .section-title {
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      font-weight: 700;
+      color: var(--navy);
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .section-sub {
+      font-size: 1.125rem;
+      color: var(--muted);
+      max-width: 672px;
+      margin: 0 auto 64px;
+      text-align: center;
+    }
+    .prose { max-width: 768px; margin: 0 auto; color: var(--muted); font-size: 1.0625rem; line-height: 1.8; }
+    .prose p + p { margin-top: 24px; }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--bg);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 24px -4px rgba(15,23,42,0.08);
+      padding: 32px;
+    }
+    .card:hover { box-shadow: 0 8px 32px -8px rgba(15,23,42,0.12); }
+    .card-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+    .card-icon-blue { background: rgba(82,113,255,0.1); }
+    .card-icon-red { background: #fef2f2; }
+    .card h3 { font-size: 1.125rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .card p { font-size: 0.875rem; color: var(--muted); line-height: 1.7; }
+
+    /* ── What Is Voice AI ── */
+    #what-is-voice-ai .two-col {
+      display: grid;
+      gap: 48px;
+    }
+    @media (min-width: 1024px) {
+      #what-is-voice-ai .two-col { grid-template-columns: 1fr 1fr; }
+    }
+    .steps-list { list-style: none; }
+    .step-item { display: flex; gap: 16px; margin-bottom: 24px; }
+    .step-num {
+      flex-shrink: 0;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--cta-blue);
+      color: #fff;
+      font-size: 0.875rem;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step-text { color: var(--muted); line-height: 1.7; padding-top: 4px; }
+
+    /* Transcript */
+    .transcript-card { background: var(--bg); border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 24px -4px rgba(15,23,42,0.08); padding: 24px; }
+    .transcript-header { display: flex; align-items: center; gap: 12px; padding-bottom: 16px; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+    .transcript-avatar { width: 40px; height: 40px; border-radius: 50%; background: rgba(34,197,94,0.2); display: flex; align-items: center; justify-content: center; color: var(--green-accent); font-size: 18px; }
+    .transcript-name { font-weight: 600; color: var(--navy); }
+    .transcript-meta { font-size: 0.75rem; color: var(--muted); }
+    .transcript-messages { max-height: 400px; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; }
+    .msg { display: flex; }
+    .msg.ai { justify-content: flex-start; }
+    .msg.human { justify-content: flex-end; }
+    .msg-bubble {
+      max-width: 85%;
+      border-radius: 16px;
+      padding: 12px 16px;
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+    .msg.ai .msg-bubble { background: rgba(82,113,255,0.1); color: var(--navy); }
+    .msg.human .msg-bubble { background: var(--section-gray); color: var(--muted); }
+    .msg-sender { font-weight: 600; font-size: 0.75rem; display: block; margin-bottom: 4px; }
+
+    /* ── Why Agents Need ── */
+    .pain-grid { display: grid; gap: 32px; margin-bottom: 64px; }
+    @media (min-width: 640px) { .pain-grid { grid-template-columns: 1fr 1fr; } }
+    .pain-cta-text { text-align: center; font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 700; color: var(--navy); max-width: 720px; margin: 0 auto; }
+    .pain-cta-text span { color: var(--green-accent); }
+
+    /* ── What We Build ── */
+    .features-grid { display: grid; gap: 24px; }
+    @media (min-width: 640px) { .features-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .features-grid { grid-template-columns: repeat(4, 1fr); } }
+
+    /* ── Setup Process ── */
+    .timeline { max-width: 800px; margin: 0 auto; }
+    .timeline-item { position: relative; display: flex; gap: 24px; padding-bottom: 48px; }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-line {
+      position: absolute;
+      left: 24px;
+      top: 56px;
+      width: 2px;
+      height: 100%;
+      background: var(--border);
+      transform: translateX(-50%);
+    }
+    .timeline-item:last-child .timeline-line { display: none; }
+    .timeline-num {
+      flex-shrink: 0;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--cta-blue);
+      color: #fff;
+      font-size: 1.125rem;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+    .timeline-content { padding-top: 4px; }
+    .timeline-content h3 { font-size: 1.25rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .timeline-content p { color: var(--muted); line-height: 1.7; }
+
+    /* ── Sounds Like ── */
+    .compare-grid { display: grid; gap: 32px; margin-bottom: 64px; }
+    @media (min-width: 768px) { .compare-grid { grid-template-columns: 1fr 1fr; } }
+    .compare-card { background: var(--bg); border-radius: 12px; padding: 32px; }
+    .compare-card.old { border: 1px solid #fecaca; }
+    .compare-card.new { border: 1px solid #bbf7d0; }
+    .compare-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+    .compare-icon { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .compare-icon.red { background: #fef2f2; color: var(--destructive); }
+    .compare-icon.green { background: #f0fdf4; color: var(--green-accent); }
+    .compare-title { font-size: 1.25rem; font-weight: 700; color: var(--navy); }
+    .compare-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+    .compare-list li { display: flex; align-items: flex-start; gap: 12px; color: var(--muted); font-size: 0.9375rem; }
+    .compare-list li svg { flex-shrink: 0; margin-top: 2px; }
+    .demo-cta { background: var(--bg); border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 24px -4px rgba(15,23,42,0.08); padding: 32px; text-align: center; max-width: 640px; margin: 0 auto; }
+    .demo-cta h3 { font-size: 1.25rem; font-weight: 700; color: var(--navy); margin: 16px 0 8px; }
+    .demo-cta p { color: var(--muted); margin-bottom: 24px; }
+
+    /* ── Compliance ── */
+    .compliance-badges { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 64px; }
+    @media (min-width: 768px) { .compliance-badges { grid-template-columns: repeat(4, 1fr); } }
+    .badge-card { background: var(--section-gray); border-radius: 12px; border: 1px solid var(--border); padding: 24px; text-align: center; }
+    .badge-icon { width: 56px; height: 56px; border-radius: 50%; background: rgba(34,197,94,0.1); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--green-accent); }
+    .badge-label { font-size: 0.875rem; font-weight: 700; color: var(--navy); }
+
+    /* ── Results ── */
+    .results-inner { background: var(--bg); border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 8px 32px -8px rgba(15,23,42,0.12); padding: 48px; }
+    .results-grid { display: grid; gap: 32px; text-align: center; }
+    @media (min-width: 640px) { .results-grid { grid-template-columns: repeat(3, 1fr); } }
+    .result-num { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; color: var(--cta-blue); }
+    .result-label { color: var(--muted); margin-top: 8px; font-weight: 500; }
+
+    /* ── FAQ ── */
+    .faq-list { max-width: 768px; margin: 0 auto; border-top: 1px solid var(--border); }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-btn {
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 24px 0;
+      text-align: left;
+    }
+    .faq-q { font-size: 1.0625rem; font-weight: 600; color: var(--navy); padding-right: 16px; }
+    .faq-chevron {
+      flex-shrink: 0;
+      width: 20px; height: 20px;
+      color: var(--muted);
+      transition: transform 0.2s;
+      margin-top: 2px;
+    }
+    .faq-chevron.open { transform: rotate(180deg); }
+    .faq-answer { color: var(--muted); line-height: 1.7; padding-bottom: 24px; display: none; font-size: 0.9375rem; }
+    .faq-answer.open { display: block; }
+
+    /* ── Final CTA ── */
+    .final-cta {
+      background: linear-gradient(135deg, #0F1629 0%, #1a1f3a 50%, #0d9488 85%, #16a34a 100%);
+      text-align: center;
+      padding: 96px 0;
+    }
+    .final-cta h2 { font-size: clamp(1.75rem, 4vw, 3rem); font-weight: 900; color: #fff; margin-bottom: 24px; }
+    .final-cta p { font-size: 1.25rem; color: rgba(255,255,255,0.6); max-width: 640px; margin: 0 auto 40px; }
+    .booking-frame { max-width: 800px; margin: 0 auto 40px; border-radius: 12px; overflow: hidden; }
+    .final-cta .foot-note { font-size: 0.875rem; color: rgba(255,255,255,0.4); }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 48px 0;
+    }
+    .footer-top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+    @media (min-width: 768px) {
+      .footer-top { flex-direction: row; justify-content: space-between; }
+    }
+    .footer-logo { display: flex; align-items: center; gap: 10px; font-size: 1.125rem; font-weight: 700; color: var(--navy); }
+    .footer-logo svg { width: 24px; height: auto; }
+    .footer-links { display: flex; gap: 24px; font-size: 0.875rem; color: var(--muted); }
+    .footer-links a:hover { color: var(--navy); }
+    .footer-copy { font-size: 0.875rem; color: var(--muted); }
+    .footer-disclaimer { font-size: 0.75rem; color: var(--muted); text-align: center; line-height: 1.7; }
+
+    /* ── Fade in ── */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in-up { animation: fadeInUp 0.6s ease-out forwards; }
+    .delay-200 { animation-delay: 0.2s; opacity: 0; }
+
+    /* SVG icon helpers */
+    .icon { display: inline-block; }
+
+    /* Mobile hide */
+    @media (max-width: 1023px) { .hide-lg { display: none !important; } }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════ NAVBAR ═══════════════════════════ -->
+<nav class="main-nav">
+  <div class="container nav-inner">
+    <a href="#" class="nav-logo">
+      <!-- Benefit Path icon (inline SVG) -->
+      <svg viewBox="0 0 45.41 77.152" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <clipPath id="cp1"><path d="M73,148.918H99.629V216H73z"/></clipPath>
+          <clipPath id="cp2"><path d="M53.879,157H80v69.168H53.879z"/></clipPath>
+        </defs>
+        <g transform="translate(-53.891,-148.918)">
+          <g clip-path="url(#cp1)">
+            <path fill="#8cc546" d="m99.301,215.824-19.570-2.234v-51.477l-6.270-1.191v-9.059l25.840-2.945z"/>
+          </g>
+          <g clip-path="url(#cp2)">
+            <path fill="#5050ff" d="m53.891,226.070v-68.871l19.570,3.723V212.875l6.270,0.715v7.570z"/>
+          </g>
+        </g>
+        <path fill="#0d5a5a" d="M25.840,64.672l-6.270-0.715V12.004l6.270,1.191z"/>
+        <path fill="#ffffff" d="M17.160,53.125v-8.047H9.113c-0.371,0-0.676-0.301-0.676-0.676v-9.730c0-0.375,0.305-0.676,0.676-0.676h8.047v-8.051c0-0.371,0.305-0.676,0.680-0.676h9.730c0.375,0,0.676,0.305,0.676,0.676v8.051h8.047c0.375,0,0.680,0.301,0.680,0.676v9.730c0,0.375-0.305,0.676-0.680,0.676H28.246V53.125c0,0.375-0.301,0.680-0.676,0.680h-9.730c-0.375,0-0.680-0.305-0.680-0.680"/>
+      </svg>
+      <span>Benefit Path</span>
+    </a>
+    <a href="#book" class="btn-primary btn-sm">Get Started</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <!-- Left -->
+      <div class="fade-in-up">
+        <p class="hero-eyebrow">Built For Medicare Agents</p>
+        <h1>
+          Book More<br>
+          <span id="typewriter-word"></span><span class="cursor"></span>
+        </h1>
+        <p class="hero-sub">With Your Own AI Calling Agent.</p>
+        <a href="#book" class="btn-primary btn-primary-lg">Book Your Setup Call</a>
+      </div>
+
+      <!-- Right — Phone mockup -->
+      <div class="hide-lg" style="display:flex;justify-content:center;" class="fade-in-up delay-200">
+        <div class="phone-mockup fade-in-up delay-200">
+          <div class="phone-notch">
+            <span class="phone-notch-time">9:41</span>
+            <div class="phone-notch-pill"></div>
+            <div class="phone-notch-bat"></div>
+          </div>
+          <div class="phone-header">
+            <p>BenefitPath Voice AI</p>
+            <span>Active Campaign</span>
+          </div>
+          <div class="phone-active">
+            <div class="ai-badge">
+              <div class="ai-dot"></div>
+              <span class="ai-label">AI Agent Active</span>
+            </div>
+            <p class="phone-calling">Calling Margaret Johnson...</p>
+            <div class="waveform">
+              <div class="waveform-bar"></div><div class="waveform-bar"></div>
+              <div class="waveform-bar"></div><div class="waveform-bar"></div>
+              <div class="waveform-bar"></div><div class="waveform-bar"></div>
+              <div class="waveform-bar"></div><div class="waveform-bar"></div>
+              <div class="waveform-bar"></div>
+            </div>
+          </div>
+          <div class="phone-divider"></div>
+          <div class="phone-calls">
+            <p class="phone-calls-label">Recent Calls</p>
+            <div class="phone-call-row">
+              <span class="phone-call-name">Margaret J.</span>
+              <div class="phone-call-meta">
+                <div class="status-dot status-connected"></div>
+                <span class="status-text">Connected</span>
+                <span class="call-time">3:24</span>
+              </div>
+            </div>
+            <div class="phone-call-row">
+              <span class="phone-call-name">Robert K.</span>
+              <div class="phone-call-meta">
+                <div class="status-dot status-voicemail"></div>
+                <span class="status-text">Voicemail</span>
+                <span class="call-time">0:45</span>
+              </div>
+            </div>
+            <div class="phone-call-row">
+              <span class="phone-call-name">Susan M.</span>
+              <div class="phone-call-meta">
+                <div class="status-dot status-connected"></div>
+                <span class="status-text">Connected</span>
+                <span class="call-time">2:12</span>
+              </div>
+            </div>
+            <div class="phone-call-row">
+              <span class="phone-call-name">James P.</span>
+              <div class="phone-call-meta">
+                <div class="status-dot status-noanswer"></div>
+                <span class="status-text">No Answer</span>
+                <span class="call-time">0:30</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- show on desktop via media query workaround: the .hide-lg class hides below 1024px -->
+      <div style="display:none" id="phone-desktop-placeholder"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ TRUST BAR ═══════════════════════════ -->
+<section class="trust-bar">
+  <div class="container">
+    <h2>Trusted by Medicare Agents Across the Country</h2>
+    <div class="stats-grid">
+      <div>
+        <p class="stat-number">2.5%</p>
+        <p class="stat-label">Appointment Booking Rate</p>
+      </div>
+      <div>
+        <p class="stat-number">100%</p>
+        <p class="stat-label">TCPA Compliant</p>
+      </div>
+      <div>
+        <p class="stat-number">48hrs</p>
+        <p class="stat-label">Setup Time</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ WHAT IS VOICE AI ═══════════════════════════ -->
+<section id="what-is-voice-ai" class="section-gray">
+  <div class="container">
+    <h2 class="section-title">What Exactly Is Voice AI?</h2>
+    <div class="prose" style="margin-bottom:80px;">
+      <p>Voice AI is an artificial intelligence agent that makes real phone calls on your behalf. Unlike robocalls or pre-recorded messages, a Voice AI agent uses advanced neural text-to-speech technology to sound like a real, natural human being. It speaks with natural cadence, pauses, tone variation, and even filler words — making it nearly indistinguishable from a live caller.</p>
+      <p>Here's how it works: you provide a list of leads — whether that's Medicare prospects, aged leads, or your existing book of business. The AI agent dials each lead automatically, one after another, at a pace you control. When someone picks up, the AI engages them in a real conversation using a script that's been custom-written for your agency and your market.</p>
+      <p>The system is smart enough to detect whether a real person answered or if the call went to voicemail. If it's voicemail, the AI drops a compliant pre-recorded message and moves on. If it's a live person, the AI follows a conversation flow that includes introducing itself, asking permission-based questions about Medicare coverage, handling basic objections, and — when the lead is interested — either transferring the call directly to your phone or booking an appointment on your calendar.</p>
+      <p>Think of it as a tireless, perfectly trained assistant that makes 200+ calls a day, never gets frustrated, never forgets the script, and never takes a day off. It handles the repetitive outreach so you can focus on what you do best: sitting down with qualified prospects and closing business.</p>
+    </div>
+
+    <div class="two-col">
+      <!-- Steps -->
+      <div>
+        <h3 style="font-size:1.5rem;font-weight:700;color:var(--navy);margin-bottom:32px;">How a Single Call Works</h3>
+        <ul class="steps-list">
+          <li class="step-item"><div class="step-num">1</div><p class="step-text">Your AI agent receives the next lead from your contact list and initiates the call automatically.</p></li>
+          <li class="step-item"><div class="step-num">2</div><p class="step-text">The phone rings on the lead's end. The AI waits for an answer or voicemail detection.</p></li>
+          <li class="step-item"><div class="step-num">3</div><p class="step-text">If a voicemail is detected, the AI drops a pre-recorded compliant message and moves to the next lead.</p></li>
+          <li class="step-item"><div class="step-num">4</div><p class="step-text">If a real person answers, the AI greets them by name and introduces itself as calling on behalf of your agency.</p></li>
+          <li class="step-item"><div class="step-num">5</div><p class="step-text">The AI asks permission-based questions about their Medicare coverage and upcoming renewal.</p></li>
+          <li class="step-item"><div class="step-num">6</div><p class="step-text">If the lead expresses interest, the AI offers to schedule a quick review call or transfers live to you.</p></li>
+          <li class="step-item"><div class="step-num">7</div><p class="step-text">If the lead books, the appointment is placed directly on your calendar with all contact details.</p></li>
+          <li class="step-item"><div class="step-num">8</div><p class="step-text">The AI logs the full call outcome, transcript, and recording into your dashboard in real time.</p></li>
+        </ul>
+      </div>
+
+      <!-- Transcript -->
+      <div>
+        <h3 style="font-size:1.5rem;font-weight:700;color:var(--navy);margin-bottom:32px;">Live Call Transcript</h3>
+        <div class="transcript-card">
+          <div class="transcript-header">
+            <div class="transcript-avatar">✓</div>
+            <div>
+              <p class="transcript-name">Margaret J.</p>
+              <p class="transcript-meta">Call Connected — 3:42 duration</p>
+            </div>
+          </div>
+          <div class="transcript-messages">
+            <div class="msg ai"><div class="msg-bubble"><span class="msg-sender">AI Agent</span>Hi Margaret, this is Sarah calling from BenefitPath Insurance Services. How are you doing today?</div></div>
+            <div class="msg human"><div class="msg-bubble"><span class="msg-sender">Margaret J.</span>I'm doing fine, thank you. Who did you say this was?</div></div>
+            <div class="msg ai"><div class="msg-bubble"><span class="msg-sender">AI Agent</span>I'm Sarah, calling on behalf of your local Medicare advisor. I wanted to reach out because your Medicare Advantage plan is coming up for renewal soon, and there may be some new benefits available in your area for 2026.</div></div>
+            <div class="msg human"><div class="msg-bubble"><span class="msg-sender">Margaret J.</span>Oh really? I haven't looked at anything new yet.</div></div>
+            <div class="msg ai"><div class="msg-bubble"><span class="msg-sender">AI Agent</span>That's exactly why I'm calling! We'd love to schedule a quick 15-minute review to walk you through what's changed. Would Tuesday or Thursday work better for you?</div></div>
+            <div class="msg human"><div class="msg-bubble"><span class="msg-sender">Margaret J.</span>Thursday afternoon would be fine.</div></div>
+            <div class="msg ai"><div class="msg-bubble"><span class="msg-sender">AI Agent</span>Perfect! I've got you down for Thursday at 2:00 PM. You'll receive a confirmation shortly. Thank you, Margaret!</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ WHY AGENTS NEED ═══════════════════════════ -->
+<section>
+  <div class="container">
+    <h2 class="section-title">The Problem Every Medicare Agent Knows Too Well</h2>
+    <div class="pain-grid">
+      <div class="card">
+        <div class="card-icon card-icon-red">
+          <!-- Clock icon -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>You Spend Hours Manually Dialing</h3>
+        <p>Every day you sit down, pull up your lead list, and start dialing one number at a time. Most calls go unanswered. The ones that do pick up often aren't interested. By the end of the day, you've spent 4 to 6 hours on the phone and booked maybe one or two appointments.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon card-icon-red">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="1" y1="1" x2="23" y2="23"/><path d="M16.5 16.5 20 20M3.4 3.4A17.9 17.9 0 0 0 2 7c0 9 9 16 9 16s1.3-1 2.9-2.8"/><path d="M10.7 5.1A10 10 0 0 1 21 15c0 .9-.1 1.7-.3 2.5"/></svg>
+        </div>
+        <h3>You Miss Your Best Leads</h3>
+        <p>While you're in an appointment with one client, three hot leads are sitting in your pipeline unanswered. By the time you call them back, they've already talked to another agent. Speed to lead is everything in Medicare sales.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon card-icon-red">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <h3>Your Competition Is Using AI Already</h3>
+        <p>The top-producing Medicare agents aren't grinding harder — they're working smarter. They've already deployed AI calling agents to handle outreach at scale. While you're making 40 calls a day, they're making 400. Every day you wait is another day they pull further ahead.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon card-icon-red">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Renewal Season Crushes You</h3>
+        <p>AEP and OEP hit like a freight train. Suddenly you have thousands of clients who need to be contacted in a narrow window. There aren't enough hours in the day to reach everyone, and hiring temporary staff takes time you don't have.</p>
+      </div>
+    </div>
+    <p class="pain-cta-text">
+      Voice AI solves all four of these problems simultaneously.
+      <span> That's why we built this.</span>
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ WHAT WE BUILD ═══════════════════════════ -->
+<section class="section-gray">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:64px;">
+      <h2 class="section-title" style="margin-bottom:16px;">Everything We Build For You — Done For You, Not DIY</h2>
+      <p class="section-sub" style="margin-bottom:0;">You don't touch a single setting. Our team handles the entire setup from day one.</p>
+    </div>
+    <div class="features-grid">
+      <div class="card">
+        <div class="card-icon card-icon-blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5271ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></div>
+        <h3>Custom AI Voice Agent</h3>
+        <p>We clone or select a professional voice that sounds completely natural on phone calls. Your AI agent will greet leads by name with warmth, clarity, and confidence.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon card-icon-blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5271ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+        <h3>Call Script & Conversation Flow</h3>
+        <p>Our team writes a fully customized Medicare-specific call script tailored to your market, products, and goals. Objection handling and natural conversation branching built in.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon card-icon-blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5271ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg></div>
+        <h3>Lead List Integration</h3>
+        <p>Upload a CSV, connect your CRM, or hand us your contact list — we handle the integration. Your AI will know exactly who to call, in what order, and how many times to retry.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon card-icon-blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5271ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.56 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.76a16 16 0 0 0 6.29 6.29l1.82-1.82a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/><polyline points="16 2 16 8 22 8"/></svg></div>
+        <h3>Voicemail Drop Setup</h3>
+        <p>We record a compliant, professional voicemail message and configure your AI to drop it automatically whenever a call goes to voicemail. Every message meets TCPA guidelines.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon card-icon-blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5271ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
+        <h3>Live Transfer Logic</h3>
+        <p>When a lead says they're interested, the AI transfers the call directly to your phone in real time so you can pick up a warm, qualified prospect instantly.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon card-icon-blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5271ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="16 14 9 14 9 19 14 19 14 14"/></svg></div>
+        <h3>Calendar Booking Integration</h3>
+        <p>The AI can schedule directly onto your Google Calendar, Outlook, or Calendly. The lead gets a confirmation, and you see it on your schedule instantly.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon card-icon-blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5271ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div>
+        <h3>Retry & Follow-Up Sequences</h3>
+        <p>Leads who don't answer on the first attempt aren't forgotten. We configure intelligent retry sequences that call back at optimal times to maximize your connection rate.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon card-icon-blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5271ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+        <h3>Real-Time Dashboard</h3>
+        <p>You get a live dashboard showing every call made, every outcome, every transcript, and every booking. Know exactly what your AI is doing at all times with full transparency.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ SETUP PROCESS ═══════════════════════════ -->
+<section>
+  <div class="container">
+    <div style="text-align:center;margin-bottom:64px;">
+      <h2 class="section-title" style="margin-bottom:16px;">Your Setup Process — Start to Finish</h2>
+      <p class="section-sub" style="margin-bottom:0;">From the moment you book a call to the moment your AI starts dialing, here is exactly what happens.</p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-line"></div>
+        <div class="timeline-num">1</div>
+        <div class="timeline-content">
+          <h3>Book Your Onboarding Call</h3>
+          <p>We start with a 30-minute strategy session where we review your Medicare business, your lead sources, your current follow-up process, and your goals. We learn exactly how you work so we can build an AI agent that fits seamlessly into your workflow. This call is free and there's no obligation.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-line"></div>
+        <div class="timeline-num">2</div>
+        <div class="timeline-content">
+          <h3>We Build Your AI Agent</h3>
+          <p>Our team selects or clones a professional voice, writes your custom call script with Medicare-specific language and objection handling, and configures every conversation flow. We build branching logic for live transfers, voicemail drops, and calendar bookings.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-line"></div>
+        <div class="timeline-num">3</div>
+        <div class="timeline-content">
+          <h3>We Connect Your Leads</h3>
+          <p>You provide your contact list however you have it — CSV export, CRM integration, or even a spreadsheet. We import and format your leads, set up dialing sequences, configure retry logic, and make sure everything is ready to go before a single call is made.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-line"></div>
+        <div class="timeline-num">4</div>
+        <div class="timeline-content">
+          <h3>Compliance Review</h3>
+          <p>Before anything goes live, our compliance team reviews every script, every voicemail message, and every configuration setting to ensure full TCPA compliance and adherence to Medicare marketing guidelines. Nothing launches without passing this review.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-line"></div>
+        <div class="timeline-num">5</div>
+        <div class="timeline-content">
+          <h3>Test Calls & Approval</h3>
+          <p>We run a series of test calls so you can hear exactly how your AI agent sounds. You listen to simulated calls with live answers and voicemail drops. You provide feedback, we make adjustments, and nothing goes to production until you give final approval.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-num">6</div>
+        <div class="timeline-content">
+          <h3>Go Live</h3>
+          <p>Once approved, we flip the switch. Your AI agent starts dialing leads from your list according to the schedule you set. You watch results come in on your real-time dashboard — calls made, connections, voicemails dropped, appointments booked.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ WHAT AI SOUNDS LIKE ═══════════════════════════ -->
+<section class="section-gray">
+  <div class="container">
+    <h2 class="section-title">Your AI Sounds Like a Real Person. Because It's Built Like One.</h2>
+    <div class="prose" style="margin-bottom:64px;">
+      <p>When most people hear "AI calling," they picture a robocall — a stilted, robotic recording that leads instantly recognize and hang up on. That's not what this is. Modern Voice AI uses neural text-to-speech technology that generates speech with natural cadence, breath pauses, subtle filler words, and tone variation that mirrors how a real person speaks on the phone.</p>
+      <p>The AI doesn't just read a script in a flat voice. It adjusts its delivery based on the context of the conversation. It pauses when the listener is speaking. It responds to questions with relevant, natural answers. It sounds warm, professional, and conversational — because it was trained on thousands of hours of real human phone conversations.</p>
+      <p>This is the difference between a technology that annoys your leads and a technology that books appointments for you while you sleep.</p>
+    </div>
+
+    <div class="compare-grid">
+      <!-- Old way -->
+      <div class="compare-card old">
+        <div class="compare-header">
+          <div class="compare-icon red">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </div>
+          <h3 class="compare-title">Old Way — Robocall</h3>
+        </div>
+        <ul class="compare-list">
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Robotic, monotone voice that sounds obviously automated</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>No response detection — talks over the listener</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Hangs up on voicemail or plays a glitchy recording</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Sounds spammy and untrustworthy from the first second</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Leads hang up immediately and block your number</li>
+        </ul>
+      </div>
+
+      <!-- New way -->
+      <div class="compare-card new">
+        <div class="compare-header">
+          <div class="compare-icon green">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h3 class="compare-title">New Way — BenefitPath Voice AI</h3>
+        </div>
+        <ul class="compare-list">
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Natural, warm voice with human cadence and tone variation</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Real-time response detection — listens and reacts naturally</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Detects voicemail and drops a clean, compliant message</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Sounds professional and trustworthy from the first word</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Leads engage, ask questions, and book appointments</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Demo CTA -->
+    <div class="demo-cta">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#5271ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+      <h3>Want to hear a real sample call?</h3>
+      <p>Book a demo and we'll play you an actual call recording so you can hear the quality for yourself.</p>
+      <a href="#book" class="btn-primary">Book a Demo</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ COMPLIANCE ═══════════════════════════ -->
+<section>
+  <div class="container">
+    <h2 class="section-title">100% Compliant. Built for the Medicare Market.</h2>
+    <div class="prose" style="margin-bottom:0;">
+      <p>Compliance isn't an afterthought for us — it's the foundation. Every aspect of BenefitPath Voice AI has been designed from the ground up to comply with the Telephone Consumer Protection Act (TCPA) and CMS Medicare marketing guidelines. We know that in the insurance industry, one compliance mistake can cost you your license, your reputation, and your livelihood.</p>
+      <p>Every call made by your AI agent includes proper disclosures at the beginning of the conversation. The AI identifies itself, states the purpose of the call, and gives the lead a clear opportunity to opt out at any time. If a lead says "take me off your list" or anything similar, the system immediately flags them, stops the call, and adds them to your suppression list — automatically, with no manual intervention required.</p>
+      <p>We only call leads for whom you have documented consent. Our system supports prior express written consent records, and we provide guidance on how to ensure your lead sources meet the legal requirements. We never use spoofed caller IDs.</p>
+      <p>Our compliance team reviews every script, every voicemail drop, and every conversation flow before your AI agent goes live. This isn't a generic tech product repurposed for insurance — this was built specifically for Medicare agents by people who understand the regulatory landscape you operate in.</p>
+    </div>
+    <div class="compliance-badges">
+      <div class="badge-card">
+        <div class="badge-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <p class="badge-label">TCPA Compliant</p>
+      </div>
+      <div class="badge-card">
+        <div class="badge-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+        <p class="badge-label">Medicare Marketing Guidelines</p>
+      </div>
+      <div class="badge-card">
+        <div class="badge-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="18" y1="8" x2="23" y2="13"/><line x1="23" y1="8" x2="18" y2="13"/></svg></div>
+        <p class="badge-label">Instant Opt-Out Honored</p>
+      </div>
+      <div class="badge-card">
+        <div class="badge-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.56 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.76a16 16 0 0 0 6.29 6.29l1.82-1.82a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <p class="badge-label">No Spoofed Numbers</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ RESULTS ═══════════════════════════ -->
+<section class="section-gray">
+  <div class="container">
+    <h2 class="section-title">Results That Speak for Themselves</h2>
+    <div class="results-inner">
+      <div class="results-grid">
+        <div>
+          <p class="result-num">2.5%</p>
+          <p class="result-label">Appointment Booking Rate</p>
+        </div>
+        <div>
+          <p class="result-num">100%</p>
+          <p class="result-label">TCPA Compliant</p>
+        </div>
+        <div>
+          <p class="result-num">48hrs</p>
+          <p class="result-label">Average Setup Time</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ FAQ ═══════════════════════════ -->
+<section>
+  <div class="container">
+    <h2 class="section-title">Everything You're Wondering About Voice AI</h2>
+    <div class="faq-list" id="faq">
+
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">Is this legal? Can I really use AI to make calls to Medicare leads?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <p class="faq-answer">Yes, absolutely. Our system is fully compliant with the Telephone Consumer Protection Act (TCPA) and CMS Medicare marketing guidelines. We only call leads for whom you have documented prior express consent. Every call includes proper disclosures, and opt-out requests are honored instantly.</p>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">Will leads know they're talking to an AI?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <p class="faq-answer">Our AI uses advanced neural text-to-speech that sounds remarkably natural — with breath pauses, tone variation, and conversational cadence. Most leads won't notice a difference. However, we always include proper disclosures at the beginning of each call as required by law.</p>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">What if a lead wants to talk to a real person right away?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <p class="faq-answer">The AI is configured to handle that request seamlessly. If a lead says they want to speak with someone, the AI can immediately transfer the call to your phone in real time. You pick up a warm, qualified prospect who's already been greeted and engaged.</p>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">How long does the setup process take?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <p class="faq-answer">Most setups are completed within 48 hours of your onboarding call. That includes voice selection, script writing, lead list integration, compliance review, and test calls. Complex configurations with custom CRM integrations may take an additional day or two.</p>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">Do I need any technical skills to use this?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <p class="faq-answer">None whatsoever. This is a done-for-you service. We handle every technical aspect — voice configuration, script programming, lead importing, compliance setup, and dashboard access. You'll receive a simple login to your dashboard where you can see results.</p>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">What types of leads does this work with?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <p class="faq-answer">Voice AI works with any lead list you have: aged leads, fresh leads, T65 lists, AEP/OEP renewal lists, referral leads, or your existing book of business. As long as you have proper consent to contact them, the AI can call them.</p>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">Can I change the call script after setup?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <p class="faq-answer">Yes. You can request script changes at any time, and our team will update the conversation flow for you. Whether you want to adjust the opening, add a new objection response, or change your call-to-action, most updates are completed within 24 hours.</p>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">What happens if a lead says "remove me from your list"?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <p class="faq-answer">The AI recognizes opt-out language immediately and responds professionally. It confirms the request, apologizes for any inconvenience, and ends the call politely. The lead is automatically added to your suppression list so they are never called again.</p>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">How do I see the results of my campaigns?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <p class="faq-answer">You get access to a real-time dashboard that shows every call made, every outcome (connected, voicemail, no answer), every transcript, and every booked appointment. You'll also receive daily summary emails so you always know exactly what your AI accomplished.</p>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">What does it cost?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <p class="faq-answer">Pricing depends on your call volume and configuration needs. We offer flexible plans that scale with your business. Book a free setup call and we'll give you a transparent quote based on your specific situation — no hidden fees, no surprises. Most agents see a positive ROI within the first two weeks.</p>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">Is there a long-term contract?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <p class="faq-answer">No. We don't lock you into lengthy contracts. Our service runs month-to-month because we believe the results should speak for themselves. If you're not seeing value, you can cancel anytime. Our retention rate is extremely high because agents consistently see measurable results.</p>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">What makes this different from a dialing service or power dialer?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <p class="faq-answer">A power dialer still requires you to be on the phone — it just dials faster. Voice AI makes the calls, has the conversations, drops the voicemails, handles objections, and books appointments — all without you being on the line. It's not a faster way to do the same thing. It's a completely different approach.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ FINAL CTA ═══════════════════════════ -->
+<section id="book" class="final-cta">
+  <div class="container">
+    <h2>Stop Dialing. Start Booking.</h2>
+    <p>Let us build your AI calling agent this week. Your leads are waiting.</p>
+    <div class="booking-frame">
+      <iframe
+        src="https://api.leadconnectorhq.com/widget/booking/TPVyOYj9Uu6aX7uwGorv"
+        style="width:100%;min-height:600px;border:none;overflow:hidden;"
+        scrolling="no"
+        id="TPVyOYj9Uu6aX7uwGorv_1774456158746"
+      ></iframe>
+    </div>
+    <p class="foot-note">No contracts. No tech skills needed. Setup completed in 48 hours.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <a href="#" class="footer-logo">
+        <svg viewBox="0 0 45.41 77.152" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <clipPath id="fcp1"><path d="M73,148.918H99.629V216H73z"/></clipPath>
+            <clipPath id="fcp2"><path d="M53.879,157H80v69.168H53.879z"/></clipPath>
+          </defs>
+          <g transform="translate(-53.891,-148.918)">
+            <g clip-path="url(#fcp1)"><path fill="#8cc546" d="m99.301,215.824-19.570-2.234v-51.477l-6.270-1.191v-9.059l25.840-2.945z"/></g>
+            <g clip-path="url(#fcp2)"><path fill="#5050ff" d="m53.891,226.070v-68.871l19.570,3.723V212.875l6.270,0.715v7.570z"/></g>
+          </g>
+          <path fill="#0d5a5a" d="M25.840,64.672l-6.270-0.715V12.004l6.270,1.191z"/>
+          <path fill="#ffffff" d="M17.160,53.125v-8.047H9.113c-0.371,0-0.676-0.301-0.676-0.676v-9.730c0-0.375,0.305-0.676,0.676-0.676h8.047v-8.051c0-0.371,0.305-0.676,0.680-0.676h9.730c0.375,0,0.676,0.305,0.676,0.676v8.051h8.047c0.375,0,0.680,0.301,0.680,0.676v9.730c0,0.375-0.305,0.676-0.680,0.676H28.246V53.125c0,0.375-0.301,0.680-0.676,0.680h-9.730c-0.375,0-0.680-0.305-0.680-0.680"/>
+        </svg>
+        <span>Benefit Path</span>
+      </a>
+      <nav class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms &amp; Conditions</a>
+        <a href="#">Cookies</a>
+      </nav>
+      <p class="footer-copy">© 2026 Benefit Path</p>
+    </div>
+    <p class="footer-disclaimer">
+      BenefitPath is not a government agency and is not affiliated with Medicare or the Centers for Medicare &amp; Medicaid Services (CMS). BenefitPath provides AI-powered outreach tools for licensed insurance agents and agencies. All AI calling services are designed to comply with TCPA regulations and CMS Medicare marketing guidelines. Results may vary. By using our services you agree to our Terms of Service and Privacy Policy.
+    </p>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════ JAVASCRIPT ═══════════════════════════ -->
+<script>
+  // ── Typewriter effect ──
+  const words = ["Appointments", "Renewals", "Consultations", "Clients", "Enrollments"];
+  let wordIndex = 0, charIndex = 0, deleting = false;
+  const el = document.getElementById("typewriter-word");
+
+  function typeWriter() {
+    const current = words[wordIndex];
+    if (!deleting && charIndex < current.length) {
+      el.textContent = current.substring(0, ++charIndex);
+      setTimeout(typeWriter, 100);
+    } else if (!deleting && charIndex === current.length) {
+      deleting = true;
+      setTimeout(typeWriter, 2000);
+    } else if (deleting && charIndex > 0) {
+      el.textContent = current.substring(0, --charIndex);
+      setTimeout(typeWriter, 50);
+    } else {
+      deleting = false;
+      wordIndex = (wordIndex + 1) % words.length;
+      setTimeout(typeWriter, 100);
+    }
+  }
+  typeWriter();
+
+  // ── FAQ accordion ──
+  function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const chevron = btn.querySelector(".faq-chevron");
+    const isOpen = answer.classList.contains("open");
+
+    // Close all
+    document.querySelectorAll(".faq-answer.open").forEach(a => a.classList.remove("open"));
+    document.querySelectorAll(".faq-chevron.open").forEach(c => c.classList.remove("open"));
+
+    if (!isOpen) {
+      answer.classList.add("open");
+      chevron.classList.add("open");
+    }
+  }
+
+  // ── Load booking widget script ──
+  (function() {
+    var s = document.createElement("script");
+    s.src = "https://api.leadconnectorhq.com/js/form_embed.js";
+    s.type = "text/javascript";
+    s.async = true;
+    document.body.appendChild(s);
+  })();
+
+  // ── Show phone mockup only on large screens ──
+  // The .hide-lg CSS class hides it below 1024px via media query
+</script>
+</body>
+</html>
