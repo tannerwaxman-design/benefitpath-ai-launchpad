@@ -1,7 +1,7 @@
 const stats = [
-  { number: "3.2", label: "Avg. Appointments Booked Per 100 Calls" },
-  { number: "14hrs", label: "Average Time Saved Per Week" },
-  { number: "4x", label: "Average ROI in First 30 Days" },
+  { number: "82", label: "Appointments Booked" },
+  { number: "3,238", label: "Calls Made" },
+  { number: "2.5%", label: "Booking Rate" },
 ];
 
 const ResultsProof = () => (
