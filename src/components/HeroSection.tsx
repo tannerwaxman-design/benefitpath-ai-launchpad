@@ -69,12 +69,6 @@ const HeroSection = () => {
             >
               Book Your Setup Call
             </a>
-            <a
-              href="#what-is-voice-ai"
-              className="inline-flex items-center justify-center rounded-lg border-2 border-white/20 px-8 py-3.5 text-base font-semibold text-primary-foreground hover:bg-white/10 transition-colors"
-            >
-              See How It Works
-            </a>
           </div>
         </div>
 
