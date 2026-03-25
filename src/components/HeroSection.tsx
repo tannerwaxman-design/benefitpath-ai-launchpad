@@ -1,4 +1,45 @@
-import { PhoneCall, Voicemail, PhoneOff } from "lucide-react";
+import { useState, useEffect } from "react";
+
+const rotatingWords = ["Appointments", "Renewals", "Consultations", "Clients", "Enrollments"];
+
+const TypewriterWord = () => {
+  const [wordIndex, setWordIndex] = useState(0);
+  const [displayed, setDisplayed] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const currentWord = rotatingWords[wordIndex];
+
+    if (!isDeleting && displayed === currentWord) {
+      const pause = setTimeout(() => setIsDeleting(true), 2000);
+      return () => clearTimeout(pause);
+    }
+
+    if (isDeleting && displayed === "") {
+      setIsDeleting(false);
+      setWordIndex((prev) => (prev + 1) % rotatingWords.length);
+      return;
+    }
+
+    const speed = isDeleting ? 50 : 100;
+    const timeout = setTimeout(() => {
+      setDisplayed(
+        isDeleting
+          ? currentWord.substring(0, displayed.length - 1)
+          : currentWord.substring(0, displayed.length + 1)
+      );
+    }, speed);
+
+    return () => clearTimeout(timeout);
+  }, [displayed, isDeleting, wordIndex]);
+
+  return (
+    <span className="text-green-highlight">
+      {displayed}
+      <span className="inline-block w-[3px] h-[0.85em] bg-green-accent ml-1 animate-[pulse_1s_ease-in-out_infinite] align-middle" />
+    </span>
+  );
+};
 
 const HeroSection = () => {
   const recentCalls = [
@@ -13,14 +54,13 @@ const HeroSection = () => {
       <div className="container mx-auto px-6 py-24 grid lg:grid-cols-2 gap-16 items-center">
         {/* Left side */}
         <div className="fade-in-up">
-          <p className="text-muted-foreground/80 text-sm font-medium tracking-wide uppercase mb-4 text-white/60">
-            Done For You Voice AI Setup
+          <p className="text-sm font-medium tracking-wide uppercase mb-4 text-white/60">
+            Built For Medicare Agents
           </p>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
-            <span className="text-primary-foreground">Your AI Calling Agent.</span>
+            <span className="text-primary-foreground">Book More</span>
             <br />
-            <span className="text-primary-foreground">Fully Built. </span>
-            <span className="text-green-highlight">Ready to Book.</span>
+            <TypewriterWord />
           </h1>
           <p className="text-lg text-white/60 leading-relaxed mb-10 max-w-xl">
             We set up your entire Voice AI system from scratch so it starts calling your Medicare leads, leaving compliant voicemails, and booking appointments — without you lifting a finger.
