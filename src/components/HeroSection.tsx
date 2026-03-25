@@ -62,9 +62,6 @@ const HeroSection = () => {
             <br />
             <TypewriterWord />
           </h1>
-          <p className="text-lg text-white/60 leading-relaxed mb-10 max-w-xl">
-            We set up your entire Voice AI system from scratch so it starts calling your Medicare leads, leaving compliant voicemails, and booking appointments — without you lifting a finger.
-          </p>
           <div className="flex flex-wrap gap-4">
             <a
               href="#book"
