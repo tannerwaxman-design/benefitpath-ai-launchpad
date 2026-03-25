@@ -62,6 +62,7 @@ const HeroSection = () => {
             <br />
             <TypewriterWord />
           </h1>
+          <p className="text-lg text-white/60 mb-10">With Your Own AI Calling Agent.</p>
           <div className="flex flex-wrap gap-4">
             <a
               href="#book"
