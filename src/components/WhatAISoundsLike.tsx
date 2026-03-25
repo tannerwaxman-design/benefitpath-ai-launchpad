@@ -79,7 +79,7 @@ const WhatAISoundsLike = () => (
         <p className="text-muted-foreground mb-6">Book a demo and we'll play you an actual call recording so you can hear the quality for yourself.</p>
         <a
           href="#book"
-          className="inline-flex items-center justify-center rounded-full bg-cta-blue px-8 py-3 text-base font-semibold text-primary-foreground shadow-sm hover:opacity-90 transition-opacity"
+          className="inline-flex items-center justify-center rounded-lg bg-primary px-8 py-3 text-base font-semibold text-primary-foreground shadow-sm hover:bg-primary/90 transition-colors"
         >
           Book a Demo
         </a>
